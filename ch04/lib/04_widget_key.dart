@@ -46,6 +46,7 @@ class _WidgetKeyTestState extends State<WidgetKeyTest> {
         Row(
           children: _swap
               ? [
+            // ValueKey는 위젯을 구분하기 위한 식별값, 위젯 트리를 업데이트 할때 위젯의 상태를 보존
             CounterBox(key: ValueKey(101), color: Colors.red),
             CounterBox(key: ValueKey(201), color: Colors.blue),
           ]
