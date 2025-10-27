@@ -8,15 +8,13 @@
 import 'package:flutter/material.dart';
 
 void main(){
-
   runApp(GridViewTest());
-
 }
 
 class GridViewTest extends StatelessWidget {
-  //const GridViewTest({super.key});
+  GridViewTest({super.key});
 
-  List<String> cities = ['서울', '대전', '대구', '부산', '광주'];
+  final List<String> cities = ['서울', '대전', '대구', '부산', '광주'];
 
   @override
   Widget build(BuildContext context) {
