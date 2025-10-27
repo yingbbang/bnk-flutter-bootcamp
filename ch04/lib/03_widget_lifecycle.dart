@@ -54,12 +54,12 @@ class _ParentWidgetState extends State<ParentWidget> {
     return Column(
       children: [
         showChild
-          ? ChildWidget(count: counter)
-          : Text('ChildWidget 제거', style: TextStyle(fontSize: 26),),
+            ? ChildWidget(count: counter)
+            : Text('ChildWidget 제거', style: TextStyle(fontSize: 26),),
 
         ElevatedButton(
-          onPressed: _increment,
-          child: const Text('ChildWidget 상태 변경')
+            onPressed: _increment,
+            child: const Text('ChildWidget 상태 변경')
         ),
         ElevatedButton(
             onPressed: _toggleChild,
@@ -124,7 +124,6 @@ class _ChildWidgetState extends State<ChildWidget> {
     print('dispose...');
   }
 }
-
 
 
 
