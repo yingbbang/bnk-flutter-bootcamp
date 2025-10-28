@@ -1,3 +1,8 @@
+/*
+  날짜 : 2025/10/28
+  이름 : 조지영
+  내용 : 6장 Navigation Delegate 실습
+ */
 import 'package:flutter/material.dart';
 
 void main() {
