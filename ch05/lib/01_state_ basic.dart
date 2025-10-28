@@ -37,6 +37,24 @@ class _ParentStateAppState extends State<ParentStateApp> {
   int _count = 0;
   String _text = '';
 
+  // 자식 위젯에서 사용할 상태 속성
+  bool _favorited = false;
+  int _favoriteCount = 0;
+
+  void toggleFavorite(){
+
+    setState(() {
+      if(_favorited){
+        _favorited = false;
+        _favoriteCount -= 1;
+      }else{
+        _favorited = true;
+        _favoriteCount += 1;
+      }
+    });
+
+  }
+
   void increment(){
     // 위젯 상태를 업데이트 하고 UI 재빌드(build 호출)
     setState(() {
@@ -79,8 +97,8 @@ class _ParentStateAppState extends State<ParentStateApp> {
             },
           ),
           Divider(),
-          IconWidget(),
-          ContentWidget()
+          IconWidget(favorited: _favorited, toggleFunction: toggleFavorite,),
+          ContentWidget(favoriteCount: _favoriteCount,)
         ],
       ),
     );
@@ -88,12 +106,20 @@ class _ParentStateAppState extends State<ParentStateApp> {
 }
 
 class IconWidget extends StatelessWidget {
+
+  final bool favorited;
+  final Function toggleFunction;
+
+  const IconWidget({super.key, this.favorited = false, required this.toggleFunction});
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: IconButton(
-        onPressed: (){},
-        icon: Icon(Icons.favorite),
+        onPressed: (){
+          toggleFunction();
+        },
+        icon: (favorited ? Icon(Icons.favorite) : Icon(Icons.favorite_border)),
         iconSize: 100,
         color: Colors.red,
       ),
@@ -102,11 +128,17 @@ class IconWidget extends StatelessWidget {
 }
 
 class ContentWidget extends StatelessWidget {
+
+  final int favoriteCount;
+
+  const ContentWidget({super.key, required this.favoriteCount});
+
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        'favoriteCount : ',
+        'favoriteCount : $favoriteCount',
         style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold
@@ -115,23 +147,3 @@ class ContentWidget extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
