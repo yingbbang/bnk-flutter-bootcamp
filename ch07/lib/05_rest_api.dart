@@ -47,6 +47,34 @@ class _RestApiScreenState extends State<RestApiScreen> {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => User1List()));
               },
               child: const Text('User1 목록')
+          ),
+          const Text('User2 Rest API 실습'),
+          ElevatedButton(
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => User1List()));
+              },
+              child: const Text('User2 목록')
+          ),
+          const Text('User3 Rest API 실습'),
+          ElevatedButton(
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => User1List()));
+              },
+              child: const Text('User3 목록')
+          ),
+          const Text('User4 Rest API 실습'),
+          ElevatedButton(
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => User1List()));
+              },
+              child: const Text('User4 목록')
+          ),
+          const Text('User5 Rest API 실습'),
+          ElevatedButton(
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => User1List()));
+              },
+              child: const Text('User5 목록')
           )
 
         ],
