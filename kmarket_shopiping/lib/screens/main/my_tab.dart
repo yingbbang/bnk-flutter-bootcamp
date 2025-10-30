@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kmarket_shopping/screens/member/login_screen.dart';
 
 class MyTab extends StatefulWidget {
   const MyTab({super.key});
@@ -13,10 +14,23 @@ class _MyTabState extends State<MyTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('마이페이지'),),
-      body: Column(
-        children: [
-          Text('마이페이지 메인')
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('로그인이 필요합니다.'),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                // 로그인 화면으로 이동
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const LoginScreen()),
+                );
+              },
+              child: const Text('로그인 하러 가기'),
+            ),
+          ],
+        ),
       ),
     );
   }
