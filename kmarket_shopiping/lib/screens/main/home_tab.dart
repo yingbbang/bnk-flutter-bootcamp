@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kmarket_shopping/screens/member/login_screen.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -37,7 +38,11 @@ class _HomeTabState extends State<HomeTab> {
       children: [
         Image.asset('images/logo.png', width: 140,),
         IconButton(
-          onPressed: null,
+          onPressed: (){
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => LoginScreen())
+            );
+          },
           icon: Icon(Icons.login, size: 30,),
         )
       ],
@@ -129,6 +134,7 @@ class _HomeTabState extends State<HomeTab> {
   // 하단 푸터 디자인 함수
   Widget _buildFooter(BuildContext context){
     return Container(
+      width: double.infinity,
       padding: EdgeInsets.all(20.0),
       color: Colors.grey[200],
       child: Column(
