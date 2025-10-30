@@ -37,7 +37,7 @@ class _MainTabScreenState extends State<MainTabScreen>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Kmarket 메인'),),
+      appBar: null,
       body: Center(
           child: _widgetList.elementAt(_selectedIndex)
       ),
