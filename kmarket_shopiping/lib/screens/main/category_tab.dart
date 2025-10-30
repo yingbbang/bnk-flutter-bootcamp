@@ -4,13 +4,13 @@ import 'package:kmarket_shopping/models/category.dart';
 
 class CategoryTab extends StatefulWidget {
   const CategoryTab({super.key});
-
   @override
   State<CategoryTab> createState() => _CategoryTabState();
 }
 
 class _CategoryTabState extends State<CategoryTab> {
   late Future<List<Category>> _categories;
+
   int _selectedIndex = 0; // 선택된 1차 카테고리 인덱스
 
   // 임시 시뮬레이션 함수(나중에 통신 처리)
