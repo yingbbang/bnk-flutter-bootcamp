@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kmarket_shopping/screens/main/main_tab_screen.dart';
 import 'package:kmarket_shopping/screens/splash_screen.dart';
 import 'package:kmarket_shopping/screens/splash_screen.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
 
 void main() {
   runApp(const MyApp());
