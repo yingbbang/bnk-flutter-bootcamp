@@ -67,90 +67,90 @@ class _RegisterScreenState extends State<RegisterScreen> {
       appBar: AppBar(title: const Text('회원가입'),),
       body: Center(
         child: Padding(
-          padding: EdgeInsets.all(30),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('기본 정보 입력'),
-                const SizedBox(height: 20,),
-                _buildInputField(
-                  controller: _usidController,
-                  title: '아이디 입력',
-                  validator: (value){
-                    if(value == null || value.length < 4){
-                      return '아이디는 4자 이상 이어야 합니다.';
-                    }
-                    return null;
-                  }
-                ),
-                const SizedBox(height: 10,),
-                _buildInputField(
-                  controller: _pass1Controller,
-                  title: '비밀번호 입력',
-                  isPass: true,
-                  validator: (value){
-                    if(value == null || value.length < 5){
-                      return '비밀번호는 5자 이상 이어야 합니다.';
-                    }
-                    return null;
-                  }
-                ),
-                const SizedBox(height: 10,),
-                _buildInputField(
-                  controller: _pass2Controller,
-                  title: '비밀번호 확인',
-                  isPass: true,
-                  validator: (value){
-                    if(value == null || value.length < 5){
-                      if(value != _pass1Controller.text){
-                        return '비밀번호가 일치하지 않습니다.';
-                      }
-                      return '비밀번호는 5자 이상 이어야 합니다.';
-                    }
-                    return null;
-                  }
-                ),
-                const SizedBox(height: 10,),
-                _buildInputField(
-                    controller: _nameController,
-                    title: '이름 입력',
-                    validator: (value){
-                      if(value == null || value.isEmpty){
-                        return '이름은 필수 입력 항목 입니다.';
-                      }
-                      return null;
-                    }
-                ),
-                const SizedBox(height: 10,),
-                _buildInputField(
-                  controller: _emailController,
-                  title: '이메일 입력(선택)',
-                  validator: (value){
-                    return null;
-                  }
-                ),
-                const SizedBox(height: 10,),
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(onPressed: (){
-                        // 로그인 이동
-                        Navigator.of(context).pop();
-                      }, child: const Text('취소')),
-                      const SizedBox(width: 10,),
-                      ElevatedButton(onPressed: _submitForm, child: const Text('가입')),
-                    ],
-                  ),
+            padding: EdgeInsets.all(30),
+            child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('기본 정보 입력'),
+                    const SizedBox(height: 20,),
+                    _buildInputField(
+                        controller: _usidController,
+                        title: '아이디 입력',
+                        validator: (value){
+                          if(value == null || value.length < 4){
+                            return '아이디는 4자 이상 이어야 합니다.';
+                          }
+                          return null;
+                        }
+                    ),
+                    const SizedBox(height: 10,),
+                    _buildInputField(
+                        controller: _pass1Controller,
+                        title: '비밀번호 입력',
+                        isPass: true,
+                        validator: (value){
+                          if(value == null || value.length < 5){
+                            return '비밀번호는 5자 이상 이어야 합니다.';
+                          }
+                          return null;
+                        }
+                    ),
+                    const SizedBox(height: 10,),
+                    _buildInputField(
+                        controller: _pass2Controller,
+                        title: '비밀번호 확인',
+                        isPass: true,
+                        validator: (value){
+                          if(value == null || value.length < 5){
+                            if(value != _pass1Controller.text){
+                              return '비밀번호가 일치하지 않습니다.';
+                            }
+                            return '비밀번호는 5자 이상 이어야 합니다.';
+                          }
+                          return null;
+                        }
+                    ),
+                    const SizedBox(height: 10,),
+                    _buildInputField(
+                        controller: _nameController,
+                        title: '이름 입력',
+                        validator: (value){
+                          if(value == null || value.isEmpty){
+                            return '이름은 필수 입력 항목 입니다.';
+                          }
+                          return null;
+                        }
+                    ),
+                    const SizedBox(height: 10,),
+                    _buildInputField(
+                        controller: _emailController,
+                        title: '이메일 입력(선택)',
+                        validator: (value){
+                          return null;
+                        }
+                    ),
+                    const SizedBox(height: 10,),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(onPressed: (){
+                            // 로그인 이동
+                            Navigator.of(context).pop();
+                          }, child: const Text('취소')),
+                          const SizedBox(width: 10,),
+                          ElevatedButton(onPressed: _submitForm, child: const Text('가입')),
+                        ],
+                      ),
 
+                    )
+                  ],
                 )
-              ],
             )
-          )
         ),
       ),
     );
@@ -167,9 +167,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       controller: controller,
       obscureText: isPass,
       decoration: InputDecoration(
-        labelText: title,
-        border: OutlineInputBorder(),
-        contentPadding: EdgeInsets.symmetric(horizontal: 15)
+          labelText: title,
+          border: OutlineInputBorder(),
+          contentPadding: EdgeInsets.symmetric(horizontal: 15)
       ),
       validator: validator,
 

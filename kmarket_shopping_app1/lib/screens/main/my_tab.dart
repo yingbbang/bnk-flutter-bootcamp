@@ -1,114 +1,95 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kmarket_shopping/providers/auth_provider.dart';
-import 'package:kmarket_shopping/screens/member/terms_screen.dart';
-import 'package:kmarket_shopping/services/member_service.dart';
-import 'package:kmarket_shopping/services/token_storage_service.dart';
+import 'package:kmarket_shopping/screens/member/login_screen.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class MyTab extends StatefulWidget {
+  const MyTab({super.key});
 
   @override
-  State<StatefulWidget> createState() => _LoginScreenState();
+  State<StatefulWidget> createState() => _MyTabState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _MyTabState extends State<MyTab> {
 
-  final _idController = TextEditingController();
-  final _pwController = TextEditingController();
-
-  final service = MemberService();
-  final tokenStorageService = TokenStorageService();
-
-  void _procLogin() async {
-
-    final usid = _idController.text;
-    final pass = _pwController.text;
-
-    if(usid.isEmpty || pass.isEmpty){
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('아이디, 비번 입력하세요.'))
-      );
-      return;
-    }
-
-    try {
-      // 서비스 호출
-      Map<String, dynamic> jsonData = await service.login(usid, pass);
-      String? accessToken = jsonData['accessToken'];
-      log('accessToken : $accessToken');
-
-      if(accessToken != null){
-        // 토큰 저장(Provider로 저장)
-        context.read<AuthProvider>().login(accessToken);
-
-        // 로그인 화면 닫기
-        Navigator.of(context).pop();
-      }
-
-    }catch(err){
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(err.toString()))
-      );
-    }
+  // 로그인 화면 디자인 함수
+  Widget _buildLogin() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('로그인이 필요합니다.'),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('로그인 이동'),
+          ),
+        ],
+      ),
+    );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('로그인'),),
-      body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(30),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset('images/logo.png'),
-              const SizedBox(height: 20,),
-              const Text('쇼핑몰 로그인',
-                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 20,),
-              TextField(
-                controller: _idController,
-                decoration: InputDecoration(
-                    labelText: '아이디 입력',
-                    border: OutlineInputBorder()
-                ),),
-              const SizedBox(height: 10,),
-              TextField(
-                controller: _pwController,
-                obscureText: true,
-                decoration: InputDecoration(
-                    labelText: '비밀번호 입력',
-                    border: OutlineInputBorder()
-                ),),
-              const SizedBox(height: 10,),
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: ElevatedButton(
-                    onPressed: _procLogin,
-                    child: const Text('로그인', style: TextStyle(fontSize: 20, color: Colors.black),)
+  // 로그인 후 사용자 정보 화면 디자인 함수
+  Widget _buildLoggedIn() {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('환영합니다, 고객님!', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                    Text('현재 포인트: 1000P', style: const TextStyle(fontSize: 18, color: Colors.blue)),
+                  ],
                 ),
-              ),
-              const SizedBox(height: 10,),
-              TextButton(
-                onPressed: (){
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => TermsScreen()),
-                  );
-                },
-                child: const Text('회원가입', style: TextStyle(color: Colors.black)),
-              )
-            ],
-          ),
+                const Spacer(),
+                ElevatedButton(
+                  onPressed: () {
+                    // 로그아웃 처리
+                    context.read<AuthProvider>().logout();
+                  },
+                  child: const Text('로그아웃'),
+                )
+              ],
+            ),
+
+            const Divider(height: 30),
+            _buildInfoTile('주문내역', '총 0건'),
+            _buildInfoTile('배송내역', '총 0건'),
+            _buildInfoTile('관심상품', '15개'),
+            const Divider(height: 30),
+
+          ],
         ),
       ),
     );
   }
 
+  Widget _buildInfoTile(String title, String value) {
+    return ListTile(
+      title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+      trailing: Text(value),
+      onTap: () {
+        // 해당 내역 화면으로 이동 로직
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    // AuthProvider 구독
+    final authProvider = Provider.of<AuthProvider>(context);
+    bool isLoggedIn = authProvider.isLoggedIn;
+
+    return Scaffold(
+        appBar: AppBar(title: const Text('마이페이지'),),
+        body: isLoggedIn ? _buildLoggedIn() : _buildLogin()
+    );
+  }
 }

@@ -19,10 +19,10 @@ class _SplashScreenState extends State<SplashScreen> {
     // 3초 후 메인 탭 이동
     Timer(const Duration(seconds: 3), (){
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const MainTabScreen())
+          MaterialPageRoute(builder: (_) => const MainTabScreen())
       );
     });
-    
+
 
   }
 
@@ -30,16 +30,16 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('images/logo.png'),
-            const SizedBox(height: 50,),
-            CircularProgressIndicator()
-          ],
-        ),
-      )
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('images/logo.png'),
+              const SizedBox(height: 50,),
+              CircularProgressIndicator()
+            ],
+          ),
+        )
     );
   }
 

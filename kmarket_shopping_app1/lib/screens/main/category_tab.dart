@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kmarket_shopping/models/category.dart';
 import 'package:kmarket_shopping/models/category_sub.dart';
+import 'package:kmarket_shopping/screens/product/product_list_screen.dart';
 import 'package:kmarket_shopping/services/category_service.dart';
 
 class CategoryTab extends StatefulWidget {
@@ -119,15 +120,27 @@ class _CategoryTabState extends State<CategoryTab> {
                 ),
                 itemCount: subCategories.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    padding: const EdgeInsets.all(8.0),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Text(subCategories[index].name),
+                  return GestureDetector(
+                    onTap: (){
 
+                      // 상품 목록 이동
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => ProductListScreen(
+                          categoryNum: subCategories[index].id,
+                          categoryName: subCategories[index].name,
+                        )),
+                      );
+
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(subCategories[index].name),
+                    ),
                   );
                 },
               ),
