@@ -12,6 +12,7 @@ class ProductResponse {
 
   factory ProductResponse.fromJson(Map<String, dynamic> json){
 
+    // Json 문자열을 Product List로 변환
     final dtoList = json['dtoList'] as List;
     List<Product> productList = dtoList.map((product) => Product.fromJson(product)).toList();
 

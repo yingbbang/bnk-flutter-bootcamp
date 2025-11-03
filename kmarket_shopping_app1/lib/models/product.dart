@@ -9,7 +9,7 @@ class Product {
   final int discount;
   final int delivery;
   final int stock;
-  final String etc;
+  final String? etc; // etc 값이 null
 
   final String thumb120;
   final String thumb240;
@@ -24,7 +24,7 @@ class Product {
     required this.discount,
     required this.delivery,
     required this.stock,
-    required this.etc,
+    this.etc, // nullable은 require 해제
     required this.thumb120,
     required this.thumb240,
     required this.thumb750
