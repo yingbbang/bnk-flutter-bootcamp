@@ -49,8 +49,11 @@ class _ProductListScreenState extends State<ProductListScreen> {
     // 스크롤 위치 감지 리스너 등록
     _scrollController.addListener((){
 
+      log('_scrollController.position.maxScrollExtent : ${_scrollController.position.maxScrollExtent}');
+      log('_scrollController.position.pixels : ${_scrollController.position.pixels}');
+
       // 현재 스크롤 위치가 최대 스크롤 범위에 가까워졌을 때
-      if(_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 200){
+      if(_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 50){
         if(!_isLoading && _hasMore){
           // 다음 상품 목록 불러오기
           _loadMoreProducts();
