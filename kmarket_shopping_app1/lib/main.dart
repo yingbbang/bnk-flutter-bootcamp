@@ -6,10 +6,7 @@ import 'package:kmarket_shopping/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-
-
   //runApp(const MyApp());
-
   runApp(
     // 최초 앱을 실행할때 AuthProvider로 로그인 여부 체크
       MultiProvider(
