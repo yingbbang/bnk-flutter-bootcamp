@@ -11,7 +11,7 @@ class CartService {
 
   final _tokenStorageService = TokenStorageService();
 
-  Future<List<Map<String, dynamic>>> getCarts() async {
+  Future<List<dynamic>> getCarts() async {
     try {
       // JWT 가져오기
       final jwt = await _tokenStorageService.readToken();
@@ -26,6 +26,7 @@ class CartService {
       );
 
       if(response.statusCode == 200){
+        //log('here1 : ${response.body}');
         return jsonDecode(response.body);
       }else {
         throw Exception(response.statusCode);
