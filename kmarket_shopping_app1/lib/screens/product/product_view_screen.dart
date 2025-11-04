@@ -37,24 +37,21 @@ class _ProductViewScreen extends State<ProductViewScreen> {
     Map<String, dynamic> jsonData = await cartService.addCart(pno, _quantity);
     //Cart savedCart = Cart.fromJson(jsonData);
 
-    if(jsonData.isNotEmpty) {
-      showDialog(
-          context: context,
-          builder: (context) =>
-              AlertDialog(
-                title: const Text('장바구니 등록 성공!'),
-                content: const Text('상품이 장바구니에 담겼습니다.'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: const Text('확인'),
-                  ),
-                ],
-              )
-      );
-    }
+    showDialog(
+        context: context,
+        builder: (context) =>
+            AlertDialog(
+              title: const Text('장바구니 등록 성공!'),
+              content: const Text('상품이 장바구니에 담겼습니다.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('확인'),
+                ),
+              ],
+            )
+    );
   }
-
 
   @override
   Widget build(BuildContext context) {
